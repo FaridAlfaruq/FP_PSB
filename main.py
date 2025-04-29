@@ -30,19 +30,21 @@ threshold = st.sidebar.number_input("Threshold", min_value=0.0, value=float(defa
 # filter
 def lpf(signal, fl, fs):
     N = len(signal)
-    T = 1/fs
+    T = 1 / fs
     Wc = 2 * np.pi * fl
 
-    #   koefisien
-    denom = (4 / T*2) + (2 * np.sqrt(2) * Wc / T) + Wc*2
-    b1 = ((8 / T*2) - (2 * Wc*2)) / denom
-    b2 = ((4 / T*2) - (2 * np.sqrt(2) * Wc / T) + Wc*2) / denom
+    # Koefisien
+    denom = (4 / T**2) + (2 * np.sqrt(2) * Wc / T) + Wc**2
+    b1 = ((8 / T**2) - (2 * Wc**2)) / denom
+    b2 = ((4 / T**2) - (2 * np.sqrt(2) * Wc / T) + Wc**2) / denom
     a0 = Wc**2 / denom
     a1 = 2 * Wc**2 / denom
     a2 = a0
+
     y = np.zeros(N)
     for n in range(2, N):
-        y[n] = (b1 * y[n-1]) - (b2 * y[n-2]) + (a0 * sig[n]) + (a1 * sig[n-1]) + (a2 * sig[n-2])
+        y[n] = (b1 * y[n-1]) - (b2 * y[n-2]) + (a0 * signal[n]) + (a1 * signal[n-1]) + (a2 * signal[n-2])
+    
     return y
   
 def hpf(signal,fh,fs):
@@ -59,7 +61,7 @@ def hpf(signal,fh,fs):
     a2 = a0
     y = np.zeros(N)
     for n in range(2, N):
-        y[n] = (b1 * y[n-1]) - (b2 * y[n-2]) + (a0 * sig[n]) + (a1 * sig[n-1]) + (a2 * sig[n-2])
+        y[n] = (b1 * y[n-1]) - (b2 * y[n-2]) + (a0 * signal[n]) + (a1 * signal[n-1]) + (a2 * signal[n-2])
     return y
 
 def derivative(sig, fs):
