@@ -4,6 +4,16 @@ import matplotlib.pyplot as plt
 
 st.header('ECG IIR Filtering With Cascade Bandpass Filter')
 upload = st.sidebar.file_uploader("Upload File.txt", type=['txt'])
+st.markdown("Pastikan file yang Anda upload menggunakan tab ('\\t') sebagai pemisah antar kolom. "
+            "Contohnya:\n\n"
+            "| sample # | ECG  |\n"
+            "|----------|------|\n"
+            "| 0        | -12  |\n"
+            "| 1        | -13  |\n"
+            "| 2        | -12  |\n"
+            "| 3        | -15  |\n"
+            "| 4        | -13  |\n"
+            "| 5        | -14  |")
 
 if upload is None:
     st.sidebar.warning("Please upload a .txt or .csv file!")
