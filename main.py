@@ -130,7 +130,7 @@ st.line_chart(sig_der)
 st.header("Squaring Signal")
 st.line_chart(sig_sqr)
 
-st.header("Moving Window Integration (QRS complex)")
+st.header("Moving Window Integration")
 st.line_chart(sig_mav)
 
 fig, ax = plt.subplots(figsize=(10,4))
